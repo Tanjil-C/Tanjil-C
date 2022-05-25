@@ -1,0 +1,126 @@
+import pygame
+import random
+import time
+
+pygame.init()
+
+width, height = 400, 400
+game_screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("The Snake Game")
+
+food_eaten = 0
+font = pygame.font.Font("ADELIA.otf", 22)
+font_x = 10
+font_y = 10
+
+global snake_head_coordinates
+
+
+def show_score(x, y):
+    score = font.render("Score = " + str(food_eaten), True, (0, 0, 0))
+    game_screen.blit(score, (x, y))
+
+
+x, y = 200, 200
+dx, dy = 0, 0
+
+food_x, food_y = random.randrange(0, width) // 10 * 10, random.randrange(0, height) // 10 * 10
+
+body_list = [(x, y)]
+
+clock = pygame.time.Clock()
+
+game_over = False
+
+
+# def death():
+#   game_screen.fill((59, 42, 14))
+#  pass
+
+while game_over == False:
+
+
+    def snake():
+        global x, y, body_list, food_x, food_y, game_over, food_eaten, snake_head_coordinates
+        x = (x + dx) % width
+        y = (y + dy) % height
+
+        count = 0
+
+        # while food_eaten >= 1:
+
+        # if (x, y) in body_list:
+        #   game_over = True
+
+        if (x, y) in body_list[:-1]:
+            game_over = True
+
+        body_list.append((x, y))
+
+        snake_head_x = body_list[-1][0]
+        snake_head_y = body_list[-1][1]
+
+        if food_x == x and food_y == y:
+            while (food_x, food_y) in body_list:
+                food_x, food_y = random.randrange(0, width) // 10 * 10, random.randrange(0, height) // 10 * 10
+                food_eaten += 1
+
+        else:
+            del body_list[0]
+
+        game_screen.fill((120, 119, 85))
+        pygame.draw.rect(game_screen, (219, 188, 13), [food_x, food_y, 10, 10])
+        show_score(x=font_x, y=font_y)
+        for (i, j) in body_list:
+            pygame.draw.rect(game_screen, (0, 0, 0), [i, j, 10, 10])
+        pygame.display.update()
+
+
+    def controls():
+        global dx, dy, snake_head_coordinates
+
+        while True:
+
+            if game_over:
+                high = "High Score = " + str(food_eaten)
+                game_screen.fill((120, 119, 85))
+                msg = font.render("Game Over", True, (219, 188, 13))
+                game_screen.blit(msg, [width//3, height//3])
+                high_score = font.render(high, True,  (219, 188, 13))
+                game_screen.blit(high_score, [width//13, height//13])
+                pygame.display.update()
+                time.sleep(5)
+                quit()
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        if dx != 10:
+                            dx = -10
+                            dy = 0
+                    elif event.key == pygame.K_RIGHT:
+                        if dx != -10:
+                            dx = 10
+                            dy = 0
+                    elif event.key == pygame.K_UP:
+                        if dy != 10:
+                            dx = 0
+                            dy = -10
+                    elif event.key == pygame.K_DOWN:
+                        if dy != -10:
+                            dx = 0
+                            dy = 10
+                    else:
+                        continue
+                    snake()
+            if not events:
+                snake()
+
+            clock.tick(20)
+
+
+    controls()
+    pygame.quit()
