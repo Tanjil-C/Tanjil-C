@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    background-image: url("/CountdownTimer/Media/Sunset.png");
+    background-repeat: no-repeat ;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1{
+    font-size: 4rem;
+    color: #fff;
+    -webkit-text-stroke: 2px goldenrod;
+}
+
+.countdown-container{
+    display: flex;
+}
+
+.big-text{
+    font-size: 6rem;
+    line-height: 1;
+    margin: 0 2rem;
+    color: #fff;
+    -webkit-text-stroke: 2px goldenrod;
+}
+
+.countdown-el{
+    text-align: center;
+    color: #fff;
+    -webkit-text-stroke: 0.5px goldenrod;
+}
+
+.countdown-el span{
+    font-weight: normal;
+}
+
