@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+
+body{
+    background-color: red;
+}
+
+main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); /* for IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* for Safari */
+}
+
+main h1{
+    border-radius: 3px;
+    color: yellow;
+    text-align: center;
+    border: 1px solid yellow;
+    margin-bottom: 25px;
+    box-shadow: -10px 10px 40px rgba(0,0,0,0.25);
+
+    
+}
+
+.container{
+    height: 400px;
+    width: 500px;
+    background-color: yellow;
+    text-align: center;
+    padding: 100px;
+    box-shadow: -10px 10px 40px rgba(0,0,0,0.25);
+
+}
+
+.message{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); /* for IE 9 */
+     -webkit-transform: translate(-50%, -50%); /* for Safari */
+    border: 1px solid red;
+    padding: 5px 5px;
+    color: red;
+}
+
+.message p{
+    text-align: center;
+    font-size: 15px;
+}
+
+ul{
+    list-style: none;
+}
+
+ul li{
+    padding: 1rem;
+}
+
+ul li input{
+    margin-top: 1rem;
+    border-style: groove;
+    padding: 5px;
+    border: 2px solid red;
+}
+
+ul button{
+  height: auto;
+  margin-top: 20px;
+  padding: 10px 50px;
+  position: relative;
+  border: 2px solid red;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.5s ease;
+}
+
+ul button:hover{
+    background-color: lightgrey;
+}
