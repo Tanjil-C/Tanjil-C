@@ -1,0 +1,180 @@
+import random
+
+dispatch_locations_amb = {}
+ambient_totes = []
+
+dispatch_locations_chl = ["CHL1", "CHL2", "CHL3"]
+dispatch_locations_frz = ["FRZ1", "FRZ2", "FRZ3"]
+
+
+scanned_list = []
+scan_product = input(str())
+
+
+global jelly
+
+print("")
+print("TEKY'S ONLINE GROCERIES STORE")
+print("-----------------------------")
+print("")
+
+products_list_ambient = ["Cox Apples", "Royal Gala Apples", "Pink Lady Apples", "Jazz Apples", "Ripen at Home Bananas",
+                         "Ripe and Ready Bananas", "Large Pears", "Sweet Baby Pears", "Large Strawberries",
+                         "Strawberries",
+                         "Large Whole Chicken", "Medium Whole Chicken", "Whole Baby Chicken", "1kg Wings", "2kg Wings",
+                         "6X2L Evian Still Spring water"]
+
+order_list = []
+count = 0
+while count < 17:
+    count += 1
+    z = random.randint(0, 15)
+    order_list.append(products_list_ambient[z])
+
+order_number = random.randint(1053220, 1053250)
+
+print(order_list)
+
+products_amb = {"Cox Apples": ["Cox Apples", "1020221", "Ambient", "fruit", 200],
+                "Pink Lady Apples": ["pink lady", "1020222", "Ambient", "fruit", 200],
+                "Royal Gala Apples": ["royal gala", "1020223", "Ambient", "fruit", 200],
+                "Jazz Apples": ["jazz apples", "1020224", "Ambient", "fruit", 200],
+                "Ripen at Home Bananas": ["Ripen at Home Bananas", "1020225", "Ambient", "fruit", 500],
+                "Ripe and Ready Bananas": ["Ripe and Ready Bananas", "1020226", "Ambient", "fruit", 500],
+                "Large Pears": ["Large Pears", "1020227", "Ambient", "fruit", 600],
+                "Sweet Baby Pears": ["Sweet Baby Pears", "1020228", "Ambient", "fruit", 400],
+                "Large Strawberries": ["Large Strawberries", "1020229", "Ambient", "fruit", 600],
+                "Strawberries": ["Strawberriess", "1020230", "Ambient", "fruit", 600],
+                "Large Whole Chicken": ["Large Whole Chicken", "1020231", "Ambient", "chicken", 1800],
+                "Medium Whole Chicken": ["Medium Whole Chicken", "1020232", "Ambient", "chicken", 1600],
+                "Whole Baby Chicken": ["Whole Baby Chicken", "1020233", "Ambient", "chicken", 1300],
+                "1kg Wings": ["1kg Wings", "1020234", "Ambient", "chicken", 1000],
+                "2kg Wings": ["2kg Wings", "1020235", "Ambient", "chicken", 2000],
+                "6X2L Evian Still Spring water": ["Evian 6X2l", "1020236", "Ambient", "Still Water", 6000]}
+
+products_chl = {"Cox": ["cox", "1020221", "Ambient", "fruit", 200],
+                "Pink Lady Apples": ["pink lady", "1020221", "Ambient", "fruit", 200],
+                "Royal Gala Apples": ["royal gala", "1020222", "Ambient", "fruit", 200],
+                "Jazz Apples": ["jazz apples", "1020222", "Ambient", "fruit", 200],
+                "Ripen at Home Bananas": ["jazz apples", "1020222", "Ambient", "fruit", 500],
+                "Ripe and Ready Bananas": ["jazz apples", "1020222", "Ambient", "fruit", 500],
+                "Large Pears": ["jazz apples", "1020222", "Ambient", "fruit", 600],
+                "Sweet Baby Pears": ["jazz apples", "1020222", "Ambient", "fruit", 400],
+                "Large Strawberries": ["jazz apples", "1020222", "Ambient", "fruit", 600],
+                "Strawberries": ["jazz apples", "1020222", "Ambient", "fruit", 600],
+                "Large Whole Chicken": ["jazz apples", "1020222", "Ambient", "chicken", 1800],
+                "Medium Whole Chicken": ["jazz apples", "1020222", "Ambient", "chicken", 1600],
+                "Whole Baby Chicken": ["jazz apples", "1020222", "Ambient", "chicken", 1300],
+                "1kg Wings": ["jazz apples", "1020222", "Ambient", "chicken", 1000],
+                "2kg Wings": ["jazz apples", "1020222", "Ambient", "chicken", 2000],
+                "6X2L Evian Still Spring water": ["Evian 6X2l", "1020222", "Ambient", "Still Water", 6000]}
+
+
+def prepare_cart():
+    sum_volumes = 0
+    volume_of_tote = 9000
+    num_totes = 0
+
+    global order_list, jelly
+
+    for i in order_list:
+        print("")
+        jelly = products_amb[i]
+        print(jelly)
+        sum_volumes = sum_volumes + jelly[4]
+
+    print(sum_volumes)
+
+    x = sum_volumes / volume_of_tote
+    print(x)
+    p = int(x)
+    print(x)
+    print("")
+    y = x - p
+    print(y)
+    print("")
+
+    if y > 0:
+        num_totes = p + 1
+    else:
+        num_totes = x
+    print("")
+    print(num_totes)
+
+    k = num_totes
+    count_ = 0
+
+    print("Before you start picking \nYou must assign totes to a dispatch location ")
+    print("")
+    while count_ != k:
+        tote_barcode = input(str("input tote barcode "))
+        print("")
+        ambient_totes.append(tote_barcode)
+        count_ += 1
+
+    print(ambient_totes)
+
+
+prepare_cart()
+
+
+def picking():
+
+    global products_amb, scan_product
+
+    #for i in order_list:
+     #   scan_product = input(str("Scan product barcode "))
+      #  print("")
+
+    for key, value in products_amb.items():
+        scan_product = input(str("Scan product barcode here "))
+
+        if value == scan_product:
+            scanned_list.append(scan_product)
+            print(scanned_list)
+
+        #else:
+           # print("Invalid barcode ")
+            #picking()
+
+
+
+
+
+
+def scanning_begin():
+
+    begin_scan = input(str("Press '1' to begin scanning "))
+
+    if begin_scan == "1":
+        picking()
+
+    else:
+        last_try = input(str("Are you sure you want to exit picking? \nType '1' to Exit "))
+
+        if last_try == "1":
+            prepare_cart()
+
+
+def assign_dispatch_location():
+
+
+    global dispatch_locations_amb
+
+    disp_loc_gen_amb_1 = "AMB" + str(random.randint(0, 10))
+
+    # dispatch_locations_amb.setdefault(disp_loc_gen_amb_1, [])
+    # dispatch_locations_amb[disp_loc_gen_amb_1].append()
+
+    for i in ambient_totes:
+
+        print(disp_loc_gen_amb_1)
+        dispatch_locations_amb.setdefault(disp_loc_gen_amb_1, [])
+        dispatch_locations_amb[disp_loc_gen_amb_1].append(i)
+
+        print(dispatch_locations_amb)
+
+    scanning_begin()
+
+
+assign_dispatch_location()
