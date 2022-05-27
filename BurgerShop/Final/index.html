@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery Address</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <h4>Delivery Address</h4>
+        <p>You can click the button below to use your current location as your shipping address</p>
+    </div>
+    <div class="container">
+        <div id="map"></div>
+        <p id="current_position"></p>
+        <button id="showMe" class="btn center-align" style="background-color: red;">
+    <i class="material-icons">
+        my_location
+    </i>
+    Use My Location
+  </button>
+        <form id="billingAddress">
+            <div id="locationList"></div>
+            <br>
+
+            <div class="input-field">
+                <textarea class="materialize-textarea" id="address" type="text"></textarea>
+                <label class="active" for="address">Street Address</label>
+            </div>
+
+            <div class="input-field">
+                <input id="city" type="text">
+                <label class="active" for="city">City/District/Town</label>
+            </div>
+            <div class="input-field">
+                <input id="postal_code" type="text">
+                <label class="active" for="pin_code">Post Code</label>
+            </div>
+            <div class="pay-container">
+                <ul>
+                    <li><h6>Delivery fee: £0.50</h3></li>
+                    <li><h6>Service fee: £2.00</h3></li>
+                    <li><h6>Total Cost: £17.50</h3></li>
+                </ul>
+        
+                <h5>Credits Available: £140</h5>
+        
+                <button id="pay">Pay</button>
+        
+            </div>
+        
+            <div class="deliv">
+                <h4> Thank you for your order</h4>
+                <h5>Your food will be with you in 25-45 minutes...</h5>
+                <h6>Get your favorite show ready before the burgers arrive :)</h6>
+            </div>
+        </form>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js'></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC7vrKelXxcX1R3ePXoBqkG_rmCzg__X18'></script>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
